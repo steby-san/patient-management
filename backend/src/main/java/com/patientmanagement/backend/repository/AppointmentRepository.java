@@ -1,6 +1,8 @@
 package com.patientmanagement.backend.repository;
 
 import com.patientmanagement.backend.entity.Appointment;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +17,11 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     @Query("SELECT COUNT(a) FROM Appointment a WHERE a.appointmentTime = :time AND a.status != 'CANCELLED'")
     long countOverlappingAppointments(@Param("time") LocalDateTime time);
+
+    boolean existsByPatientIdAndAppointmentTime(Long patientId, LocalDateTime appointmentTime);
+    boolean existsByDoctorNameAndAppointmentTime(String doctorName, LocalDateTime appointmentTime);
+
+    boolean existsByPatientIdAndAppointmentTimeAndIdNot(@NotNull Long patientId, @NotNull @Future LocalDateTime appointmentTime, Long id);
+
+    boolean existsByDoctorNameAndAppointmentTimeAndIdNot(String doctorName, @NotNull @Future LocalDateTime appointmentTime, Long id);
 }

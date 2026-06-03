@@ -20,5 +20,5 @@ public class PrescriptionItemDto {
     private String dosage;
     
     @Min(1)
-    private int quantity;
+    private Integer quantity;
 }

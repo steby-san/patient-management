@@ -1,10 +1,7 @@
 package com.patientmanagement.backend.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,6 +12,8 @@ import java.util.List;
 @Table(name = "prescriptions")
 @Data
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Prescription {
@@ -45,6 +44,17 @@ public class Prescription {
     @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<PrescriptionItem> items = new ArrayList<>();
+
+    public void addItem(PrescriptionItem item) {
+        items.add(item);
+        item.setPrescription(this); // Set the parent reference on the child entity
+    }
+
+
+    public void removeItem(PrescriptionItem item) {
+        items.remove(item);
+        item.setPrescription(null); // Remove the parent reference
+    }
 
     @PrePersist
     protected void prePersist() {
