@@ -1,8 +1,38 @@
 package com.patientmanagement.backend.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.patientmanagement.backend.dto.PrescriptionCreateDto;
+import com.patientmanagement.backend.dto.PrescriptionResponseDto;
+import com.patientmanagement.backend.service.PrescriptionService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-// TODO: implement
+@RequestMapping("/api/v1/prescriptions")
 public class PrescriptionController {
+
+    private final PrescriptionService prescriptionService;
+
+    public PrescriptionController(PrescriptionService prescriptionService) {
+        this.prescriptionService = prescriptionService;
+    }
+
+    @PostMapping
+    public ResponseEntity<PrescriptionResponseDto> createPrescription(
+            @Valid @RequestBody PrescriptionCreateDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(prescriptionService.createPrescription(dto));
+    }
+
+    @GetMapping("/patient/{patientId}")
+    public ResponseEntity<List<PrescriptionResponseDto>> getByPatient(@PathVariable Long patientId) {
+        return ResponseEntity.ok(prescriptionService.getByPatient(patientId));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PrescriptionResponseDto> getDetail(@PathVariable Long id) {
+        return ResponseEntity.ok(prescriptionService.getDetail(id));
+    }
 }
