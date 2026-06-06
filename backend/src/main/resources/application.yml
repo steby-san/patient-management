@@ -23,6 +23,7 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
+    clean-on-validation-error: true
 jwt:
   secret: d8a9e22709e39e6a9f3ebc69f2571216a69512f458a27c73db21379b369c0d35a58e6e5870f443c1682f808796582496a7cb019803b9b476fc3db9c7929d288d
   expiration: 86400000
