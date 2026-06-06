@@ -122,6 +122,13 @@
 			<version>1.9.2</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- OpenAPI & Swagger JSON Generation -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+			<version>3.0.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
