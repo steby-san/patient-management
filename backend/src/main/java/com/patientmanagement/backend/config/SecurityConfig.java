@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/docs.html").permitAll()
 
                         // Phân quyền theo yêu cầu
                         .requestMatchers("/api/v1/prescriptions/**", "/api/v1/health-metrics/**", "/api/v1/reports/**").hasAnyRole("DOCTOR", "ADMIN")
