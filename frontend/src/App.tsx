@@ -6,6 +6,7 @@ import { Login } from '@/pages/Login';
 import { Patients } from '@/pages/Patients';
 import { Appointments } from '@/pages/Appointments';
 import { HealthMetrics } from '@/pages/HealthMetrics';
+import { Medications } from '@/pages/Medications';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 
 const queryClient = new QueryClient();
@@ -22,7 +23,7 @@ function App() {
               <Route index element={<Dashboard />} />
               <Route path="patients" element={<Patients />} />
               <Route path="appointments" element={<Appointments />} />
-              <Route path="medications" element={<div className="p-4 bg-card rounded-xl border shadow-sm animate-in fade-in">Tính năng đang phát triển...</div>} />
+              <Route path="medications" element={<Medications />} />
               <Route path="metrics" element={<HealthMetrics />} />
             </Route>
           </Route>
