@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   mysql-db:
     image: mysql:8.0
@@ -7,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: mysql-password
       MYSQL_DATABASE: patient_management
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     restart: unless-stopped
